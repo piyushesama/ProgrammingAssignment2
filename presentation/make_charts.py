@@ -49,13 +49,16 @@ def style(ax, title=None, sub=None):
     ax.spines["left"].set_color(SLATE)
     ax.spines["bottom"].set_color(SLATE)
     ax.tick_params(colors=NAVY)
-    if title:
-        ax.set_title(title, color=NAVY, fontsize=18, fontweight="bold", pad=14, loc="left")
+    # subtitle sits just above the axes; title sits above the subtitle
     if sub:
-        ax.text(0, 1.04, sub, transform=ax.transAxes, color=SLATE, fontsize=12)
+        ax.text(0, 1.045, sub, transform=ax.transAxes, color=SLATE, fontsize=12, va="bottom")
+    if title:
+        pad = 34 if sub else 14
+        ax.set_title(title, color=NAVY, fontsize=18, fontweight="bold", pad=pad, loc="left")
 
 def save(fig, name):
     p = os.path.join(OUT, name)
+    fig.subplots_adjust(top=0.82)
     fig.savefig(p, facecolor="white")
     plt.close(fig)
     print("wrote", p)
