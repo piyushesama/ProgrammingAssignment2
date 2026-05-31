@@ -227,11 +227,11 @@ def chart_albumin_dialysis():
     b2 = ax.bar(x+w/2, dev, w, label="+ Albumin dialysis device", color=TEAL)
     ax.set_xticks(x); ax.set_xticklabels(trials)
     ax.set_ylabel("Survival (%)  —  illustrative")
-    ax.set_ylim(0, 85)
-    ax.legend(frameon=False, fontsize=12, labelcolor=NAVY)
+    ax.set_ylim(0, 92)
+    ax.legend(frameon=False, fontsize=12, labelcolor=NAVY, loc="upper left", bbox_to_anchor=(0.0, 1.0))
     style(ax, "Albumin dialysis: biochemistry improves, survival does not",
           "Largest RCTs showed no overall survival benefit; signal in HRS-1 / MELD>30 subgroups")
-    ax.text(0.5, 78, "No significant difference in primary survival endpoint\n(benefit limited to specific subgroups)",
+    ax.text(1.0, 76, "No significant difference in primary survival endpoint\n(benefit limited to specific subgroups)",
             transform=ax.transData, ha="center", color=CORAL, fontsize=11.5, fontweight="bold")
     save(fig, "10_albumin_dialysis.png")
 
