@@ -1,32 +1,40 @@
-# Role of Liver Support Systems in the ICU — The Peri-Transplant Setting
+# BUYING TIME — Liver Support Systems in the ICU (TED-style keynote)
 
-A 31-slide, 16:9 keynote (focus on **PLEX** and **CRRT**) covering recent advances and
-futuristic directions in extracorporeal liver support.
+A 24-slide, cinematic **TED-talk-style** keynote on the *Role of Liver Support
+Systems in the ICU — the peri-transplant setting* (PLEX & CRRT focus).
 
 ## Deliverable
-- **`Liver_Support_ICU_Keynote.pptx`** — open in **Keynote**, **PowerPoint**, or **Google Slides**.
-  Fully editable: text, colours and the embedded charts can all be changed.
+- **`Liver_Support_ICU_TED_Keynote.pptx`** — full-bleed 16:9, opens in Keynote,
+  PowerPoint or Google Slides. Each slide is a designed full-bleed image.
 
-## How it was built
-- `make_charts.py` — generates the 12 data visualizations (matplotlib, 300 dpi) into `charts/`.
-- `build_deck.py` — assembles the slide deck (python-pptx) with a consistent design system.
+## Design
+- Cinematic near-black canvas, one big idea per slide, dramatic display type
+  (Anton + Fraunces + Inter), custom vector data-viz (no stock charts).
+- Narrative arc: the problem → the big idea → CRRT → PLEX → the honest slide →
+  the playbook → what just changed → the future → takeaways → close.
 
-Rebuild anytime:
+## How it's built (fully reproducible)
+- `ted_engine.py`   — SVG slide engine + signature "liver-as-network" art.
+- `build_ted_deck.py` — authors all 24 slides as SVG, renders to 2560×1440 PNGs.
+- `assemble_pptx.py`  — packs the PNGs into a full-bleed .pptx.
+
 ```bash
-pip install python-pptx matplotlib numpy
-python3 make_charts.py && python3 build_deck.py
+pip install cairosvg python-pptx pillow
+# fonts: place Anton, Fraunces, Inter, Bebas Neue .ttf in ./fonts and `cp` to ~/.fonts
+python3 build_ted_deck.py && python3 assemble_pptx.py
 ```
 
-## Data sources (selected)
-- Larsen FS et al. High-volume plasma exchange in ALF — RCT. *J Hepatol* 2016.
-- Maiwall R et al. Standard-volume plasma exchange in ALF — RCT. *Clin Gastroenterol Hepatol* 2022.
-- Kumar R et al. TPE in ACLF improves survival — updated meta-analysis. *Liver Int* 2025.
-- Bañares R et al. RELIEF (MARS). *Hepatology* 2013;  Kribben A et al. HELIOS (Prometheus). *Gastroenterology* 2012.
-- Cardoso FS et al. CRRT & hyperammonaemia in ALF.
-- EASL CPG on acute (fulminant) liver failure;  APACHE trial (NCT03702920).
+## Data sources
+Larsen FS et al. *J Hepatol* 2016 (HVP RCT) · Maiwall R et al. *Clin Gastroenterol
+Hepatol* 2022 (standard-volume PLEX) · Kumar R et al. *Liver Int* 2025 (ACLF
+meta-analysis) · RELIEF (MARS, *Hepatology* 2013) · HELIOS (Prometheus,
+*Gastroenterology* 2012) · Cardoso FS et al. (CRRT & ammonia) · EASL CPG on
+acute liver failure · APACHE trial (NCT03702920).
 
-## ⚠️ Note on the figures
-Charts are built from published trial and meta-analysis figures. A few values
-(e.g. the era-by-era survival bar chart and the MARS/Prometheus survival bars)
-are **illustrative for teaching** rather than exact reproductions. Please verify
-all numbers against the primary sources before any clinical or formal use.
+> ⚠️ Some figures (e.g. the "500+ jobs" and pre-ICU survival framing) are
+> illustrative/teaching devices. Verify all numbers against the primary
+> sources before clinical or formal use.
+
+## Note
+The earlier conventional version (`Liver_Support_ICU_Keynote.pptx` + `charts/`)
+is retained for reference.
